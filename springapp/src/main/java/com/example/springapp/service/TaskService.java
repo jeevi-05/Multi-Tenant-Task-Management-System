@@ -4,6 +4,7 @@ import com.example.springapp.dto.TaskRequest;
 import com.example.springapp.dto.TaskResponse;
 import com.example.springapp.model.Role;
 import com.example.springapp.model.Task;
+import com.example.springapp.model.TaskStatus;
 import com.example.springapp.model.User;
 import com.example.springapp.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
     private final SecurityUtils securityUtils;
+    private final ActivityLogService activityLogService;
 
     public TaskResponse createTask(TaskRequest request) {
         User user = securityUtils.getCurrentUser();
@@ -29,14 +31,18 @@ public class TaskService {
         task.setCreatedBy(user);
         task.setOrganization(user.getOrganization());
 
-        return TaskResponse.from(taskRepository.save(task));
+        Task saved = taskRepository.save(task);
+
+        activityLogService.log(user, saved,
+                user.getName() + " created task '" + saved.getTitle() + "'");
+
+        return TaskResponse.from(saved);
     }
 
     public List<TaskResponse> getAllTasks() {
         User user = securityUtils.getCurrentUser();
         Long orgId = user.getOrganization().getId();
 
-        // ADMIN sees all tasks in org, MEMBER sees only their own
         if (user.getRole() == Role.ADMIN) {
             return taskRepository.findByOrganizationId(orgId)
                     .stream().map(TaskResponse::from).toList();
@@ -58,17 +64,29 @@ public class TaskService {
         Task task = taskRepository.findByIdAndOrganizationId(id, orgId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
-        // MEMBER can only update their own tasks
         if (user.getRole() == Role.MEMBER && !task.getCreatedBy().getId().equals(user.getId())) {
             throw new RuntimeException("Access denied");
         }
+
+        TaskStatus previousStatus = task.getStatus();
 
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
         task.setStatus(request.getStatus());
         task.setPriority(request.getPriority());
 
-        return TaskResponse.from(taskRepository.save(task));
+        Task saved = taskRepository.save(task);
+
+        // Log status change separately if status changed
+        if (previousStatus != request.getStatus()) {
+            activityLogService.log(user, saved,
+                    user.getName() + " marked task '" + saved.getTitle() + "' as " + request.getStatus());
+        } else {
+            activityLogService.log(user, saved,
+                    user.getName() + " updated task '" + saved.getTitle() + "'");
+        }
+
+        return TaskResponse.from(saved);
     }
 
     public void deleteTask(Long id) {
@@ -78,7 +96,6 @@ public class TaskService {
         Task task = taskRepository.findByIdAndOrganizationId(id, orgId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));
 
-        // MEMBER can only delete their own tasks
         if (user.getRole() == Role.MEMBER && !task.getCreatedBy().getId().equals(user.getId())) {
             throw new RuntimeException("Access denied");
         }
