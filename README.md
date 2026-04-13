@@ -25,6 +25,9 @@ Each user belongs to an organization, and data is isolated between organizations
 - Organization Entity
 - JWT Authentication (Login/Register)
 - Frontend-Backend Integration
+- <img width="1919" height="870" alt="image" src="https://github.com/user-attachments/assets/922a3d3c-f678-49e3-b9ad-f1ee8b1ea9f6" />
+<img width="1919" height="878" alt="image" src="https://github.com/user-attachments/assets/73ad58da-adef-4d6e-a1aa-ab39853e5d9d" />
+<img width="1919" height="871" alt="Screenshot 2026-04-12 233914" src="https://github.com/user-attachments/assets/37b4d328-9d8b-4df9-9250-1fecbaf3069d" />
 
 ---
 
