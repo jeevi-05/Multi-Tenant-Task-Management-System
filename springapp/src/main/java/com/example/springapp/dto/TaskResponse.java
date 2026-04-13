@@ -1,6 +1,7 @@
 package com.example.springapp.dto;
 
 import com.example.springapp.model.Task;
+import com.example.springapp.model.TaskPriority;
 import com.example.springapp.model.TaskStatus;
 import lombok.Data;
 
@@ -13,6 +14,7 @@ public class TaskResponse {
     private String title;
     private String description;
     private TaskStatus status;
+    private TaskPriority priority;
     private String createdByName;
     private String createdByEmail;
     private String organizationName;
@@ -24,6 +26,7 @@ public class TaskResponse {
         res.setTitle(task.getTitle());
         res.setDescription(task.getDescription());
         res.setStatus(task.getStatus());
+        res.setPriority(task.getPriority());
         res.setCreatedByName(task.getCreatedBy().getName());
         res.setCreatedByEmail(task.getCreatedBy().getEmail());
         res.setOrganizationName(task.getOrganization().getName());

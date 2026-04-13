@@ -1,5 +1,6 @@
 package com.example.springapp.dto;
 
+import com.example.springapp.model.TaskPriority;
 import com.example.springapp.model.TaskStatus;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -13,4 +14,6 @@ public class TaskRequest {
     private String description;
 
     private TaskStatus status = TaskStatus.TODO;
+
+    private TaskPriority priority = TaskPriority.MEDIUM;
 }

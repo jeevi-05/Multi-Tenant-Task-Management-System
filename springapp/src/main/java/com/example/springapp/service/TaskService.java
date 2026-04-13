@@ -25,6 +25,7 @@ public class TaskService {
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
         task.setStatus(request.getStatus());
+        task.setPriority(request.getPriority());
         task.setCreatedBy(user);
         task.setOrganization(user.getOrganization());
 
@@ -65,6 +66,7 @@ public class TaskService {
         task.setTitle(request.getTitle());
         task.setDescription(request.getDescription());
         task.setStatus(request.getStatus());
+        task.setPriority(request.getPriority());
 
         return TaskResponse.from(taskRepository.save(task));
     }
