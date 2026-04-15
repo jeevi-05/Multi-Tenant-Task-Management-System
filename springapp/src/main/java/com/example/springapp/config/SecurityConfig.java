@@ -30,7 +30,7 @@ public class SecurityConfig {
 
     public SecurityConfig(JwtUtil jwtUtil,
                           UserDetailsService userDetailsService,
-                          @Lazy PasswordEncoder passwordEncoder,
+                          @Lazy   PasswordEncoder passwordEncoder,
                           CorsConfigurationSource corsConfigurationSource) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
