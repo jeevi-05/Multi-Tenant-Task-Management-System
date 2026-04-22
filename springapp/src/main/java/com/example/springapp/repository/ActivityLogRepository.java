@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ActivityLogRepository extends JpaRepository<ActivityLog, Long> {
     List<ActivityLog> findTop10ByOrganizationIdOrderByCreatedAtDesc(Long organizationId);
+    void deleteByTaskId(Long taskId);
 }

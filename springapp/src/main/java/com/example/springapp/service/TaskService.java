@@ -9,6 +9,7 @@ import com.example.springapp.model.User;
 import com.example.springapp.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -89,6 +90,7 @@ public class TaskService {
         return TaskResponse.from(saved);
     }
 
+    @Transactional
     public void deleteTask(Long id) {
         User user = securityUtils.getCurrentUser();
         Long orgId = user.getOrganization().getId();
@@ -100,6 +102,8 @@ public class TaskService {
             throw new RuntimeException("Access denied");
         }
 
+        // Delete activity logs first to avoid FK constraint violation
+        activityLogService.deleteLogsForTask(id);
         taskRepository.delete(task);
     }
 }

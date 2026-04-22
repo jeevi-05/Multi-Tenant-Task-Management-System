@@ -1,0 +1,73 @@
+services:
+
+  # ── MySQL ──────────────────────────────────────────────────
+  mysql:
+    image: mysql:8.0
+    container_name: workorbit-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE:      ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - workorbit-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ── Spring Boot Backend ────────────────────────────────────
+  backend:
+    build:
+      context: ./springapp
+      dockerfile: Dockerfile
+    container_name: workorbit-backend
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_URL:         ${DB_URL}
+      DB_USERNAME:    ${DB_USERNAME}
+      DB_PASSWORD:    ${DB_PASSWORD}
+      JWT_SECRET:     ${JWT_SECRET}
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+    ports:
+      - "8080:8080"
+    networks:
+      - workorbit-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+
+  # ── React Frontend ─────────────────────────────────────────
+  frontend:
+    build:
+      context: ./reactapp
+      dockerfile: Dockerfile
+    container_name: workorbit-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - workorbit-net
+
+# ── Volumes ────────────────────────────────────────────────
+volumes:
+  mysql-data:
+    driver: local
+
+# ── Network ────────────────────────────────────────────────
+networks:
+  workorbit-net:
+    driver: bridge

@@ -7,6 +7,7 @@ import com.example.springapp.model.User;
 import com.example.springapp.repository.ActivityLogRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class ActivityLogService {
         entry.setOrganization(user.getOrganization()); // org isolation
         entry.setAction(action);
         activityLogRepository.save(entry);
+    }
+
+    @Transactional
+    public void deleteLogsForTask(Long taskId) {
+        activityLogRepository.deleteByTaskId(taskId);
     }
 
     public List<ActivityLogResponse> getLatestLogs() {
