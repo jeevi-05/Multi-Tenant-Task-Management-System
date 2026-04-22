@@ -46,12 +46,19 @@ Each user belongs to an organization, and data is isolated between organizations
 <img width="1919" height="882" alt="Screenshot 2026-04-13 144532" src="https://github.com/user-attachments/assets/8b6220b3-0f7f-4658-a4c5-28c6a25620e6" />
 <img width="1919" height="870" alt="Screenshot 2026-04-13 144608" src="https://github.com/user-attachments/assets/eeb7d472-d5a9-46d3-af85-46dbda1c1297" />
 <img width="1919" height="863" alt="Screenshot 2026-04-13 144700" src="https://github.com/user-attachments/assets/0cef237d-bc6b-4be4-8110-8e83bce897ec" />
-
-#### 🟡 Phase 3 (Day 3)
 - Role-Based Access Control (Admin vs Member)
 
+#### ✅ Phase 3 (Completed)
+- Activity-Log Implementation
+- #### 🖥️ Frontend – Activity Log UI
+<img width="1894" height="873" alt="image" src="https://github.com/user-attachments/assets/806a75a7-78d9-4844-8a50-b631b165f909" />
+#### ⚙️ Backend – Activity Logging Logic
+<img width="1919" height="980" alt="image" src="https://github.com/user-attachments/assets/74d978cd-a44a-4300-806b-c53b557541ee" />
+<img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/90ced4f2-dbdb-4319-a31a-eba0586eec14" />
+- Tracks user actions like task creation, updates, and completion with organization-level isolation.
+
 #### 🟡 Phase 4 (Day 4)
-- React UI for Task Management
+- Final UI-Implmentation
 
 #### 🟡 Phase 5 (Day 5)
 - Docker Setup (Containerization)
