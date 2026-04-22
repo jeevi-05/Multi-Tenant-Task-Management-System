@@ -1,0 +1,217 @@
+/* ── Card ── */
+.ra-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.ra-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-4) var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.ra-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+/* Animated pulse dot */
+.ra-pulse {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ra-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: rgba(34,197,94,0.3);
+  animation: raPulse 2s ease-in-out infinite;
+}
+
+@keyframes raPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50%       { transform: scale(1.5); opacity: 0; }
+}
+
+.ra-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.ra-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1px 8px;
+}
+
+/* ── Body ── */
+.ra-body { padding: var(--sp-1) 0 var(--sp-2); }
+
+/* ── Loading ── */
+.ra-loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--sp-8) 0;
+}
+
+.ra-spinner {
+  width: 20px; height: 20px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: raSpin 0.6s linear infinite;
+  transition: none !important;
+}
+
+@keyframes raSpin { to { transform: rotate(360deg); } }
+
+/* ── Empty state ── */
+.ra-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-8) var(--sp-4);
+  gap: var(--sp-2);
+  text-align: center;
+}
+
+.ra-empty-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--r-lg);
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-faint);
+  margin-bottom: var(--sp-1);
+}
+
+.ra-empty-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-2);
+  margin: 0;
+}
+
+.ra-empty-sub {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin: 0;
+}
+
+/* ── List ── */
+.ra-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ra-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+  padding: var(--sp-3) var(--sp-5);
+  position: relative;
+  transition: background 0.15s ease;
+  cursor: default;
+}
+
+.ra-item:hover { background: var(--hover-bg); }
+
+/* ── Action icon ── */
+.ra-icon {
+  width: 28px; height: 28px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Green — created */
+.ra-icon-created {
+  background: rgba(34,197,94,0.12);
+  color: #22C55E;
+  border: 1px solid rgba(34,197,94,0.2);
+}
+
+/* Amber — updated */
+.ra-icon-updated {
+  background: rgba(245,158,11,0.12);
+  color: #F59E0B;
+  border: 1px solid rgba(245,158,11,0.2);
+}
+
+/* Blue — status change */
+.ra-icon-status {
+  background: rgba(59,130,246,0.12);
+  color: #3B82F6;
+  border: 1px solid rgba(59,130,246,0.2);
+}
+
+[data-theme="light"] .ra-icon-created { background: #F0FDF4; border-color: #BBF7D0; }
+[data-theme="light"] .ra-icon-updated  { background: #FFFBEB; border-color: #FDE68A; }
+[data-theme="light"] .ra-icon-status   { background: #EFF6FF; border-color: #BFDBFE; }
+
+/* ── Content ── */
+.ra-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.ra-action-text {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+/* Bold user name */
+.ra-name {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Highlighted task title */
+.ra-task-title {
+  color: var(--text-2);
+  font-weight: 500;
+}
+
+.ra-time {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+/* ── Divider between items ── */
+.ra-divider {
+  position: absolute;
+  bottom: 0;
+  left: var(--sp-5);
+  right: var(--sp-5);
+  height: 1px;
+  background: var(--border);
+  opacity: 0.6;
+}

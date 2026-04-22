@@ -1,0 +1,49 @@
+.scard {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex; flex-direction: column; gap: var(--sp-1);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative; overflow: hidden;
+}
+
+.scard::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--c, var(--grad));
+  opacity: 0.9;
+}
+
+.scard:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.scard-top {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.scard-icon {
+  width: 30px; height: 30px; border-radius: var(--r-sm);
+  background: var(--input-bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+}
+
+.scard-value { font-size: 26px; font-weight: 700; color: var(--text); letter-spacing: -0.5px; line-height: 1; }
+.scard-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.6px; }
+
+.scard-bar {
+  height: 3px; background: var(--border);
+  border-radius: 10px; overflow: hidden; margin-top: var(--sp-2);
+}
+
+.scard-fill {
+  height: 100%; background: var(--grad); border-radius: 10px;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scard-pct { font-size: 11px; color: var(--text-faint); font-weight: 500; margin-top: 2px; }
