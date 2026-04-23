@@ -6,9 +6,7 @@ export default function Toast({ message, type, onClose }) {
     const t = setTimeout(onClose, 3000);
     return () => clearTimeout(t);
   }, [onClose]);
-
   if (!message) return null;
-
   return (
     <div className={`toast toast-${type}`}>
       <span>{type === 'success' ? '✅' : '❌'} {message}</span>

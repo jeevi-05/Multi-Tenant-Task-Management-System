@@ -1,18 +1,15 @@
 import React from 'react';
 import './TaskCard.css';
-
 const STATUS = {
   TODO:        { label: 'To Do',       cls: 'todo' },
   IN_PROGRESS: { label: 'In Progress', cls: 'inprog' },
   DONE:        { label: 'Done',        cls: 'done' },
 };
-
 const PRIORITY = {
   HIGH:   { color: '#EF4444', label: 'High' },
   MEDIUM: { color: '#F59E0B', label: 'Medium' },
   LOW:    { color: '#22C55E', label: 'Low' },
 };
-
 export default function TaskCard({ task, currentUser, onEdit, onDelete }) {
   const canModify = currentUser?.role === 'ADMIN' || task.createdByEmail === currentUser?.email;
   const s = STATUS[task.status]    || STATUS.TODO;
