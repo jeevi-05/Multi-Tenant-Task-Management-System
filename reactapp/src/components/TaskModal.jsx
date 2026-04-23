@@ -3,9 +3,13 @@ import './TaskModal.css';
 
 const EMPTY = { title: '', description: '', status: 'TODO', priority: 'MEDIUM' };
 
+
+
 export default function TaskModal({ task, onClose, onSubmit }) {
   const [form, setForm]       = useState(EMPTY);
   const [loading, setLoading] = useState(false);
+
+
 
   useEffect(() => {
     setForm(task

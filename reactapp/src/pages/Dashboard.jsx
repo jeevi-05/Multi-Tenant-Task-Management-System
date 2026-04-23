@@ -112,9 +112,7 @@ export default function Dashboard() {
         darkMode={darkMode}
         onToggleDark={() => setDarkMode(d => !d)}
       />
-
       <div className="wo-page-body">
-
         {/* ── Left column (70%) ── */}
         <main className="wo-main">
 
@@ -141,7 +139,6 @@ export default function Dashboard() {
               New Task
             </button>
           </div>
-
           {/* Stats */}
           <div className="wo-stats">
             <StatsCard label="Total Tasks"  value={counts.ALL}         icon="📋" color="#7C3AED" pct={pct} />
