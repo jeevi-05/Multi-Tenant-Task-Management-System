@@ -17,7 +17,6 @@ public class ActivityLogService {
 
     private final ActivityLogRepository activityLogRepository;
     private final SecurityUtils securityUtils;
-
     public void log(User user, Task task, String action) {
         ActivityLog entry = new ActivityLog();
         entry.setUser(user);
@@ -26,12 +25,10 @@ public class ActivityLogService {
         entry.setAction(action);
         activityLogRepository.save(entry);
     }
-
     @Transactional
     public void deleteLogsForTask(Long taskId) {
         activityLogRepository.deleteByTaskId(taskId);
     }
-
     public List<ActivityLogResponse> getLatestLogs() {
         User user = securityUtils.getCurrentUser();
         Long orgId = user.getOrganization().getId();
