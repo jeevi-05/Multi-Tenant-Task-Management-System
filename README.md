@@ -64,6 +64,8 @@ Each user belongs to an organization, and data is isolated between organizations
 - Docker Setup (Completed)
 <img width="1919" height="1005" alt="image" src="https://github.com/user-attachments/assets/918ca091-e3c8-489e-afa4-565eb6367a27" />
 
+## Demo Video
+https://drive.google.com/file/d/1aBYZJxcghoJv8tKFmI-wJg6KaWPv8f4z/view?usp=sharing
 
 ## How to Run
 
