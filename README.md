@@ -57,11 +57,13 @@ Each user belongs to an organization, and data is isolated between organizations
 <img width="1919" height="973" alt="image" src="https://github.com/user-attachments/assets/90ced4f2-dbdb-4319-a31a-eba0586eec14" />
 - Tracks user actions like task creation, updates, and completion with organization-level isolation.
 
-#### 🟡 Phase 4 (Day 4)
+#### ✅ Phase 4 (Completed)
 - Final UI-Implmentation
 
-#### 🟡 Phase 5 (Day 5)
-- Docker Setup (Containerization)
+#### ✅ Phase 5 (Day 5)
+- Docker Setup (Completed)
+<img width="1919" height="1005" alt="image" src="https://github.com/user-attachments/assets/918ca091-e3c8-489e-afa4-565eb6367a27" />
+
 
 ## How to Run
 
